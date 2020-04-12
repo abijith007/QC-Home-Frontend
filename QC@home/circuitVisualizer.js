@@ -31,10 +31,6 @@ class circuitVisualizer {
 
     this.top_margin = this.g.height / (2 * this.jsonObj.qureg.length)
 
-    if(this.jsonObj.qureg.length > 7) {
-      this.gate_width = this.gate_width / this.jsonObj.qureg.length * (this.jsonObj.qureg.length - 1)
-    }
-
     this.wire_spacing = 2 * this.top_margin
 
     this.g.strokeWeight(2)
