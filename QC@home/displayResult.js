@@ -17,9 +17,21 @@ class resultDisplay {
 		this.res_probabs = res_probabs
 	}
 
-	getResults() {
-		// Function for listening to asynchronous response from server
+	getResults(jsonObj_col) {
+		// Function for sending and listening to asynchronous response from server
 		// To be filled by @AbijithTR
+		background(40)
+		textSize(72)
+		fill(240, 208, 122)
+		strokeWeight(2)
+		textAlign(CENTER)
+		text('Loading...', windowWidth/2, windowHeight/2)
+		console.log('get results')
+
+		noLoop()
+		setTimeout(() => {loop()}, 3000)
+		
+
 		let jsonObj_from_server = {
 			probabilities : [[0, 55], [1, 15], [2, 0], [3, 5],
 							 [4, 7], [5, 0], [6, 8], [7, 10]]

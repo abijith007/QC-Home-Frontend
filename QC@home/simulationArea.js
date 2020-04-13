@@ -75,15 +75,13 @@ class simulationArea {
 
         console.log(this.jsonObj_col)
         return 'result';
-
-        console.log(this.jsonObj_col);
-        axios.post(SERVER_URL + "/data", this.jsonObj_col).then(() => {
-          console.log("data sent");
-        });
-
       }
       return 'circuit'
     }
     return 'circuit'
+  }
+
+  getJsonObjCol() {
+    return this.jsonObj_col
   }
 }

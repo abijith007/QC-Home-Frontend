@@ -1,6 +1,7 @@
 let ce_height = 180
 let updateCE = [false, false]
 let state = 'circuit'
+let prev_state = state
 
 function mousePressed() {
   if(state == 'circuit') {
@@ -30,9 +31,15 @@ function draw() {
     ce.show()
     cv.show()
     sa.show()
+    prev_state = state
   }
   else if(state == 'result') {
-    rd.getResults()
-    rd.drawHistogram()
+    if(prev_state == 'circuit') {
+      rd.getResults(sa.getJsonObjCol())
+    }
+    if(prev_state == state) {
+      rd.drawHistogram()
+    }
+    prev_state = state
   }
 }
