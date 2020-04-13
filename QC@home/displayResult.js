@@ -26,7 +26,6 @@ class resultDisplay {
 		strokeWeight(2)
 		textAlign(CENTER)
 		text('Loading...', windowWidth/2, windowHeight/2)
-		console.log('get results')
 
 		noLoop()
 		setTimeout(() => {loop()}, 3000)
