@@ -1,5 +1,3 @@
-const SERVER_URL = "http://localhost:4000";
-
 class simulationArea {
   constructor(y, jsonObj) {
     this.x = 0;
