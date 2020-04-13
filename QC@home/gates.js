@@ -11,7 +11,7 @@ class gate {
   }
   
   show() {
-    this.g.fill(50)
+    this.g.fill(40)
     this.g.strokeWeight(6)
     this.g.stroke(this.color)
     this.g.square(this.x, this.y, this.w, 10, 10, 10, 10)

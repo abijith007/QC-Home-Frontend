@@ -13,7 +13,7 @@ class simulationArea {
   }
   
   createSimulationArea() {
-    this.g.background(50)
+    this.g.background(40)
     this.g.strokeWeight(5)
     this.g.stroke(100, 255, 120)
     this.g.fill(50)
@@ -53,7 +53,10 @@ class simulationArea {
           }
         }
         console.log(this.jsonObj_col)
+        return 'result';
       }
+      return 'circuit'
     }
+    return 'circuit'
   }
 }

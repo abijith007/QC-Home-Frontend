@@ -24,7 +24,7 @@ class circuitVisualizer {
   }
 
   show() {
-    this.g.background(50)
+    this.g.background(40)
     this.g.strokeWeight(12)
     this.g.stroke(170)
     this.g.line(0, this.h, windowWidth, this.h)
@@ -68,7 +68,7 @@ class circuitVisualizer {
         }
         
         
-        this.g.fill(50)
+        this.g.fill(40)
         this.g.strokeWeight(6)
         this.g.stroke(c)
         this.g.rect(x1, y1, this.gate_width, this.gate_width, 10, 10, 10, 10)

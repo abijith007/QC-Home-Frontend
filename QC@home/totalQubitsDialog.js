@@ -9,7 +9,7 @@ class totalQubitsDialog {
   }
 
   show() {
-    this.g.fill(50)
+    this.g.fill(40)
     this.g.strokeWeight(4)
     this.g.stroke(255)
     this.g.rect(this.x, this.y, this.w, this.h, 10, 10, 10, 10)

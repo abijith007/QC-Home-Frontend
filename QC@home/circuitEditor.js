@@ -19,6 +19,7 @@ class circuitEditor {
   }
   
   createCircuitEditor() {
+    this.g.background(40)
     this.tqd = new totalQubitsDialog(this.separator*0.2, this.h*0.3, this.g)
     this.tqd.show()
     this.aqd = new activeQubitDialog(this.separator*0.55, this.h*0.3, this.tqd.getTotalQubits(), this.g)
