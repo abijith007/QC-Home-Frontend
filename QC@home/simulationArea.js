@@ -15,7 +15,6 @@ class simulationArea {
   }
 
   createSimulationArea() {
-
     this.g.background(40)
     this.g.strokeWeight(5)
     this.g.stroke(100, 255, 120)
