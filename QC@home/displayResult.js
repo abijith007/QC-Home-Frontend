@@ -18,8 +18,6 @@ class resultDisplay {
 	}
 
 	getResults(jsonObj_col) {
-		// Function for sending and listening to asynchronous response from server
-		// To be filled by @AbijithTR
 		background(40)
 		textSize(72)
 		fill(240, 208, 122)
@@ -28,14 +26,20 @@ class resultDisplay {
 		text('Loading...', windowWidth/2, windowHeight/2)
 
 		noLoop()
-		setTimeout(() => {loop()}, 3000)
-		
+
+		// Function for sending and listening to asynchronous response from server
+		// To be filled by @AbijithTR
+		// loop() function is to start the draw loop again. call it once when you're done getting and setting
+		// the jsonObj_from_server variable with response from the server
 
 		let jsonObj_from_server = {
 			probabilities : [[0, 55], [1, 15], [2, 0], [3, 5],
 							 [4, 7], [5, 0], [6, 8], [7, 10]]
 		}
 		this.res_probabs = jsonObj_from_server
+
+		setTimeout(() => {loop()}, 3000)
+		////////////////////////
 	}
 
 	drawHistogram() {
