@@ -43,6 +43,7 @@ class activeQubitDialog {
   
   setTotalQubits(num_qubits) {
     this.total_qubits = num_qubits
+    this.active = 0
   }
   
   getActiveQubit() {

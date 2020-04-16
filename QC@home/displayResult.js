@@ -4,12 +4,18 @@ class resultDisplay {
   constructor() {
     this.res_probabs = {
       probabilities: [],
+      time : ""
     };
 
     this.btnX = windowWidth / 4;
     this.btnY = (7 * windowHeight) / 8;
     this.btnW = windowWidth / 2;
     this.btnH = windowHeight / 10;
+
+    this.saveX = windowWidth*0.8;
+    this.saveY = (7 * windowHeight) / 8;
+    this.saveW = windowWidth*0.15;
+    this.saveH = windowHeight / 15;
 
     this.graph_left_margin = 40;
   }
@@ -29,10 +35,6 @@ class resultDisplay {
 
     noLoop();
     var jsonObj_from_server;
-    // Function for sending and listening to asynchronous response from server
-    // To be filled by @AbijithTR
-    // loop() function is to start the draw loop again. call it once when you're done getting and setting
-    // the jsonObj_from_server variable with response from the server
     (async () => {
       const rawResponse = await fetch("http://localhost:4000/data", {
         method: "POST",
@@ -45,7 +47,6 @@ class resultDisplay {
       jsonObj_from_server = await rawResponse.json();
 
       this.res_probabs = jsonObj_from_server;
-      console.log('res_probab:', this.res_probabs)
     })();
 
     setTimeout(() => {
@@ -67,12 +68,16 @@ class resultDisplay {
     );
 
     let num_counts = min(this.res_probabs.probabilities.length, 32);
-    let div_size =
-      (windowWidth - this.graph_left_margin - 10) / (num_counts + 1);
+    let div_size = (windowWidth - this.graph_left_margin - 10) / (num_counts + 1);
     let originX = this.graph_left_margin;
     let originY = (3 * windowHeight) / 4;
+    let displaying_full = true;
 
-    // Graph markings
+    if(num_counts !== this.res_probabs.probabilities.length) {
+      displaying_full = false;
+    }
+
+    // Graph
     for (let i = 0; i < num_counts; i++) {
       let x1 = originX + div_size * (i + 1);
       let y1 = originY - 5;
@@ -133,11 +138,19 @@ class resultDisplay {
     text("0%", x1 - 15, originY);
     text("100%", x1 - 15, y4);
 
+    if(!displaying_full) {
+      let caution_msg = 'Displaying 32/'+this.res_probabs.probabilities.length+" states in the result. Click 'Save Results' button to see more..."
+      noStroke()
+      textSize(18)
+      text(caution_msg, windowWidth/2, windowHeight*0.82)
+    }
+
+    // Button 1
     strokeWeight(6);
     stroke(100, 255, 120);
     fill(40);
     rect(this.btnX, this.btnY, this.btnW, this.btnH, 10, 10, 10, 10);
-    fill(100, 255, 120);
+    fill(100, 215, 120);
     strokeWeight(1);
     textAlign(CENTER);
     textSize(36);
@@ -146,6 +159,29 @@ class resultDisplay {
       this.btnX + this.btnW / 2,
       this.btnY + this.btnH * 0.65
     );
+
+    // Button 2
+    strokeWeight(4);
+    stroke(200, 80, 80);
+    fill(40);
+    rect(this.saveX, this.saveY, this.saveW, this.saveH, 10, 10, 10, 10);
+    fill(200, 80, 80);
+    strokeWeight(1);
+    textAlign(CENTER);
+    textSize(28);
+    text(
+      "Save Results",
+      this.saveX + this.saveW / 2,
+      this.saveY + this.saveH * 0.65
+    );
+
+    // Time taken
+    noStroke()
+    fill(0, 128, 255)
+    textSize(36)
+    textAlign(CENTER)
+    text('Time taken: '+this.res_probabs.time, windowWidth/2, windowHeight*0.125)
+
   }
 
   click() {
@@ -156,5 +192,13 @@ class resultDisplay {
       return "result";
     }
     return "result";
+  }
+
+  save() {
+    if (mouseX >= this.saveX && mouseX <= this.saveX + this.saveW) {
+      if (mouseY >= this.saveY && mouseY <= this.saveY + this.saveH) {
+        saveJSON(this.res_probabs, 'results.json')
+      }
+    }
   }
 }

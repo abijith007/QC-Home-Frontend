@@ -8,11 +8,15 @@ function mousePressed() {
     updateCE = ce.click()
     if(updateCE[0]) {
       cv.updateJsonObj(ce.getJsonObj())
+      updateCE = [false, false]
     }
     state = sa.click()
   }
   else if(state == 'result') {
+    rd.save()
     state = rd.click()
+    console.log('ce:', ce.getJsonObj())
+    console.log('sa:', sa.getJsonObjCol())
   }
 }
 

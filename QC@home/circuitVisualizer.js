@@ -37,7 +37,7 @@ class circuitVisualizer {
     for (let i = 0; i < this.jsonObj.qureg.length; i++) {
       let x1 = 50
       let y1 = this.top_margin + (i * (this.wire_spacing))
-      let x2 = (10 * windowWidth) - 50
+      let x2 = windowWidth - 30
       this.g.line(x1, y1, x2, y1)
 
       this.g.fill(255)

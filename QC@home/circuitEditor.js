@@ -80,6 +80,7 @@ class circuitEditor {
           this.tqd.show()
           this.aqd.setTotalQubits(this.tqd.getTotalQubits())
           this.updateQubitsToJSON(this.tqd.getTotalQubits())
+          this.aqd.show()
         }
         
         let updateAQD = this.aqd.click()
