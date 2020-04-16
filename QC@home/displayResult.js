@@ -24,6 +24,7 @@ class resultDisplay {
 		textSize(72)
 		fill(240, 208, 122)
 		strokeWeight(2)
+		stroke(240, 208, 122)
 		textAlign(CENTER)
 		text('Loading...', windowWidth/2, windowHeight/2)
 
@@ -33,10 +34,6 @@ class resultDisplay {
 		// To be filled by @AbijithTR
 		// loop() function is to start the draw loop again. call it once when you're done getting and setting
 		// the jsonObj_from_server variable with response from the server
-
-		console.log(jsonObj_col);
-
-
 		(async () => {
 		  const rawResponse = await fetch('http://localhost:4000/data', {
 		    method: 'POST',
@@ -47,6 +44,7 @@ class resultDisplay {
 		    body: JSON.stringify(jsonObj_col)
 		  });
 		  const content = await rawResponse.json();
+		  // loop()
 
 		  console.log(content);
 		})();
