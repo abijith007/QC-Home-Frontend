@@ -28,11 +28,29 @@ class resultDisplay {
 		text('Loading...', windowWidth/2, windowHeight/2)
 
 		noLoop()
-
+	
 		// Function for sending and listening to asynchronous response from server
 		// To be filled by @AbijithTR
 		// loop() function is to start the draw loop again. call it once when you're done getting and setting
 		// the jsonObj_from_server variable with response from the server
+
+		console.log(jsonObj_col);
+
+
+		(async () => {
+		  const rawResponse = await fetch('http://localhost:4000/data', {
+		    method: 'POST',
+		    headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    },
+		    body: JSON.stringify(jsonObj_col)
+		  });
+		  const content = await rawResponse.json();
+
+		  console.log(content);
+		})();
+
 
 		let jsonObj_from_server = {
 			probabilities : [[0, 55], [1, 15], [2, 0], [3, 5],
