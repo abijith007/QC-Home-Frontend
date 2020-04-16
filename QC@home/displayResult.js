@@ -2,7 +2,6 @@ const SERVER_URL = "http://localhost:4000";
 
 class resultDisplay {
 	constructor() {
-		this.result_str = ""
 		this.res_probabs = {
 			probabilities : []
 		}
