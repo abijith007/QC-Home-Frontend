@@ -28,6 +28,7 @@ class resultDisplay {
     text("Loading...", windowWidth / 2, windowHeight / 2);
 
     noLoop();
+    var jsonObj_from_server;
     // Function for sending and listening to asynchronous response from server
     // To be filled by @AbijithTR
     // loop() function is to start the draw loop again. call it once when you're done getting and setting
@@ -41,28 +42,15 @@ class resultDisplay {
         },
         body: JSON.stringify(jsonObj_col),
       });
-      const content = await rawResponse.json();
+      jsonObj_from_server = await rawResponse.json();
 
-      console.log(content);
+      this.res_probabs = jsonObj_from_server;
+      console.log('res_probab:', this.res_probabs)
     })();
-
-    let jsonObj_from_server = {
-      probabilities: [
-        [0, 55],
-        [1, 15],
-        [2, 0],
-        [3, 5],
-        [4, 7],
-        [5, 0],
-        [6, 8],
-        [7, 10],
-      ],
-    };
-    this.res_probabs = jsonObj_from_server;
 
     setTimeout(() => {
       loop();
-    }, 3000);
+    }, 2000);
     ////////////////////////
   }
 
