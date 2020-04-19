@@ -1,10 +1,12 @@
 const SERVER_URL = "http://localhost:4000";
 
+const KEY = "$2y$12$VLuo7sR8tzzoRwgDgG8xsuXOpDNFpLX76z5vY4d7tW/xiq73rWAOq";
+
 class resultDisplay {
   constructor() {
     this.res_probabs = {
       probabilities: [],
-      time : ""
+      time: "",
     };
 
     this.btnX = windowWidth / 4;
@@ -12,9 +14,9 @@ class resultDisplay {
     this.btnW = windowWidth / 2;
     this.btnH = windowHeight / 10;
 
-    this.saveX = windowWidth*0.8;
+    this.saveX = windowWidth * 0.8;
     this.saveY = (7 * windowHeight) / 8;
-    this.saveW = windowWidth*0.15;
+    this.saveW = windowWidth * 0.15;
     this.saveH = windowHeight / 15;
 
     this.graph_left_margin = 40;
@@ -35,6 +37,8 @@ class resultDisplay {
 
     noLoop();
     var jsonObj_from_server;
+
+    jsonObj_col.key = KEY;
     (async () => {
       const rawResponse = await fetch("http://localhost:4000/data", {
         method: "POST",
@@ -68,12 +72,13 @@ class resultDisplay {
     );
 
     let num_counts = min(this.res_probabs.probabilities.length, 32);
-    let div_size = (windowWidth - this.graph_left_margin - 10) / (num_counts + 1);
+    let div_size =
+      (windowWidth - this.graph_left_margin - 10) / (num_counts + 1);
     let originX = this.graph_left_margin;
     let originY = (3 * windowHeight) / 4;
     let displaying_full = true;
 
-    if(num_counts !== this.res_probabs.probabilities.length) {
+    if (num_counts !== this.res_probabs.probabilities.length) {
       displaying_full = false;
     }
 
@@ -138,11 +143,14 @@ class resultDisplay {
     text("0%", x1 - 15, originY);
     text("100%", x1 - 15, y4);
 
-    if(!displaying_full) {
-      let caution_msg = 'Displaying 32/'+this.res_probabs.probabilities.length+" states in the result. Click 'Save Results' button to see more..."
-      noStroke()
-      textSize(18)
-      text(caution_msg, windowWidth/2, windowHeight*0.82)
+    if (!displaying_full) {
+      let caution_msg =
+        "Displaying 32/" +
+        this.res_probabs.probabilities.length +
+        " states in the result. Click 'Save Results' button to see more...";
+      noStroke();
+      textSize(18);
+      text(caution_msg, windowWidth / 2, windowHeight * 0.82);
     }
 
     // Button 1
@@ -176,12 +184,15 @@ class resultDisplay {
     );
 
     // Time taken
-    noStroke()
-    fill(0, 128, 255)
-    textSize(36)
-    textAlign(CENTER)
-    text('Time taken: '+this.res_probabs.time, windowWidth/2, windowHeight*0.125)
-
+    noStroke();
+    fill(0, 128, 255);
+    textSize(36);
+    textAlign(CENTER);
+    text(
+      "Time taken: " + this.res_probabs.time,
+      windowWidth / 2,
+      windowHeight * 0.125
+    );
   }
 
   click() {
@@ -197,7 +208,7 @@ class resultDisplay {
   save() {
     if (mouseX >= this.saveX && mouseX <= this.saveX + this.saveW) {
       if (mouseY >= this.saveY && mouseY <= this.saveY + this.saveH) {
-        saveJSON(this.res_probabs, 'results.json')
+        saveJSON(this.res_probabs, "results.json");
       }
     }
   }
