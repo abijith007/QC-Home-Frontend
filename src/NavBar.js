@@ -42,7 +42,7 @@ class NavBar extends Component
 							<br></br>
 						<div className="row">
   							<div className="col-6 col-md-4">
-  							   <img src="abeer.png" className="rounded-circle" alt="Abeer Vaishnav" width="200" height="200"></img>
+  							   <img src="abeer.jpeg" className="rounded-circle" alt="Abeer Vaishnav" width="200" height="200"></img>
   						    </div>
   						    <br></br>
   							<div className="col-12 col-md-8"><br></br>  <h4><b>Abeer Vaishnav</b></h4> 
